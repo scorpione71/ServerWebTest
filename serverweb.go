@@ -8,12 +8,13 @@ import (
 
 func main() {
 	//Gestore principale strumento HTTP
-	http.HandleFunc("/luigi", luisHandler)
+	http.HandleFunc("/", luisHandler)
 	log.Fatal(http.ListenAndServe("localhost:9999", nil))
 	//Senza log di errori//
 	//http.ListenAndServe("localhost:9999", nil)//
 }
 
 func luisHandler(response http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(response, "ciao da %s\n", request.URL.Path)
+	//URL.Path[1:] serve a specificare che verrà visualizzato il path a partire dal secondo carattere, quindi visualizzerà tutto ciò che verra digitato dopo "/"
+	fmt.Fprintf(response, "ciao da %s\n", request.URL.Path[1:])
 }
