@@ -17,7 +17,7 @@ func main() {
 }
 
 func home_handler(w http.ResponseWriter, r *http.Request) {
-	page, _ := template.ParseFiles("Home.html")
+	page, _ := template.ParseFiles("./risorse_HTML/Home.html")
 	page.Execute(w, "")
 }
 
