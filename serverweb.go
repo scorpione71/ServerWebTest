@@ -9,11 +9,15 @@ import (
 
 func main() {
 	//Gestore principale strumento HTTP
+	//Creazione Server Http Multiplexer
+	r := http.NewServeMux()
+	r.HandleFunc("/test/", luisHandler)
+	r.HandleFunc("/home", home_handler)
+	log.Fatal(http.ListenAndServe(":8080", r))
+	/*Creazione server standard
 	http.HandleFunc("/test/", luisHandler)
 	http.HandleFunc("/home", home_handler)
-	log.Fatal(http.ListenAndServe("localhost:8080", nil))
-	//Senza log di errori//
-	//http.ListenAndServe("localhost:9999", nil)//
+	http.ListenAndServe("localhost:9999", nil)*/
 }
 
 func home_handler(w http.ResponseWriter, r *http.Request) {
