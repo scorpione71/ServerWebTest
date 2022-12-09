@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>[Pagina Edit]</Title>
+        <style type="text/css">
+            .stile1{
+                background-color: aquamarine;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-weight: bold;
+                text-align: center;
+            }
+            .stile2{
+                background-color: azure;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: normal;
+                text-align: center;
+                text-shadow: 0ch;
+            }
+        </style>
+    </head>
+    <body>
+        <header><h1 class="stile1">{{.Title}}</h1></header>
+        <section class="stile2">
+            <header> Contenuto del Body:</header>
+            <article>{{printf "%s" .Body}}</article>
+        </section>  
+        
+        <footer>CopyRight "Luigi Orlando" - luigiorlando71@gmail.com</footer>  
+    </body>
+</html>
