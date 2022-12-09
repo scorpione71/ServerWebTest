@@ -21,22 +21,23 @@ func main() {
 			w.Quit()
 		}
 	}, a)
-	a.SetContent(container.NewGridWithRows(2, widget.NewButton("AVVIA SERVER", func() {
-		Multiplexer()
-	}), widget.NewButton("ESCI", func() {
-		dialogo.Show()
-	})))
+	a.SetContent(container.NewGridWithRows(3, widget.NewButton("AVVIA SERVER 1", func() {
+		Multiplexer1()
+	}), widget.NewButton("AVVIA SERVER 2", func() {
+		Multiplexer2()
+	}), widget.NewButton("ESCI", func() { dialogo.Show() })))
 	a.Resize(fyne.NewSize(300, 200))
 	a.CenterOnScreen()
 	a.ShowAndRun()
 
 }
 
-func Multiplexer() {
+func Multiplexer1() {
 	//http Handler che è il Multiplexer
 	r := http.NewServeMux()
 	r.HandleFunc("/test/", luisHandler)
 	r.HandleFunc("/home", home_handler)
+
 	log.Fatal(http.ListenAndServe(":8080", r))
 
 	//Gestore principale strumento HTTP
@@ -56,4 +57,24 @@ func home_handler(w http.ResponseWriter, r *http.Request) {
 func luisHandler(response http.ResponseWriter, request *http.Request) {
 	//URL.Path[1:] serve a specificare che verrà visualizzato il path a partire dal secondo carattere, quindi visualizzerà tutto ciò che verra digitato dopo "/"
 	fmt.Fprintf(response, "HOME PAGE - LUIGI ORLANDO\n PATH DIGITATO [ %s ]", request.URL.Path[len("/test/"):])
+}
+
+type Page struct {
+	Title string
+	Body  []byte
+}
+
+func Init_Page(title string, body string) *Page {
+	return &Page{Title: title, Body: []byte(body)}
+}
+
+func Multiplexer2() {
+	r := http.NewServeMux()
+	r.HandleFunc("/edit", edit)
+	log.Fatal(http.ListenAndServe(":8080", r))
+}
+func edit(w http.ResponseWriter, r *http.Request) {
+	p := Init_Page("Titolo Pagina Web", "Contenuto Pagina web")
+	t, _ := template.ParseFiles("./risorse_HTML/edit.html")
+	t.Execute(w, p)
 }
