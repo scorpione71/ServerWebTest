@@ -14,16 +14,40 @@
                 font-family: Arial, Helvetica, sans-serif;
                 font-weight: normal;
                 text-align: center;
-                text-shadow: 0ch;
+                text-shadow: 1ch;
+            }
+            header{
+                background-color: aquamarine;
+                color:chocolate;
+                padding: 5px;
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <header><h1 class="stile1">{{.Title}}</h1></header>
+        <nav>
+            <a href="#Home">Home</a>
+            <a href="#Seconda Pagina">Seconda Pagina</a>
+            <a href="#Terza Pagina">Terza Pagina</a>
+        </nav>
         <section class="stile2">
             <header> Contenuto del Body:</header>
             <article>{{printf "%s" .Body}}</article>
-        </section>  
+        </section> 
+        <section class="stile2">
+            <h2 id="Home">Home</h2>
+            <p>Pagina Principale che ha lo scopo di mostrare tutte le informazioni e i link necessari alla loro visualizzazionemfdddjjjjjjjjjjjjjjjj
+                jjjjjjdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p>
+            <h2 id="Seconda Pagina">Seconda Pagina</h2>
+            <p>Pagina Intermedia che contiene informazioni Specifiche su alcuni argomenti. Selezione di argomenti che vengono trattati in modo eccelso
+                jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+            </p>
+            <h2 id="Terza Pagina">Terza Pagina</h2>
+            <p>Pagina che mostra alcuni approfondimenti gggggggggggggggggggssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+                jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+            </p>
+        </section> 
         
         <footer>CopyRight "Luigi Orlando" - luigiorlando71@gmail.com</footer>  
     </body>
