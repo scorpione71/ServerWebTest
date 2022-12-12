@@ -71,7 +71,14 @@ func Init_Page(title string, body string) *Page {
 func Multiplexer2() {
 	r := http.NewServeMux()
 	r.HandleFunc("/edit", edit)
+	r.HandleFunc("/Home.html", home)
 	log.Fatal(http.ListenAndServe(":8080", r))
+}
+func home(w http.ResponseWriter, r *http.Request) {
+	p := Init_Page("Pagina Home Ricaricata", "Contenuto Pagina")
+	t, _ := template.ParseFiles("./risorse_HTML/edit.html")
+	t.Execute(w, p)
+
 }
 func edit(w http.ResponseWriter, r *http.Request) {
 	p := Init_Page("Titolo Pagina Web", "Contenuto Pagina web")
