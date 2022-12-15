@@ -4,43 +4,100 @@
         <Title>[Prima Pagina]</Title>
         <style>
             h1{
-                background-color: chartreuse;
+                background-color:rgb(149, 149, 149);
                 text-align: center;
                 font-weight: bold;
-                color: chocolate;
+                color:rgb(45, 45, 45);
             }
             footer{
-                background-color: chartreuse;
-                color: chocolate;
+                background-color: black;
+                color: white;
                 text-align: center;
             }
             aside{
-                background-color: bisque;
-                text-shadow: 20pt;
-                width: 570px;
-                columns: 2;
+                overflow: auto;
+                background-color:rgba(228, 220, 220, 0.859);
+                color: black;
+                text-align: left;
+                float:right;
+                columns: 1;
+               
             }
-          
+            section{
+                overflow: auto;
+                columns: 2;
+              }
+            nav{
+                background-color: rgb(214, 210, 210);
+                color:black;
+                height: 30px;
+                font-size:larger ;
+                font-weight: bold;
+            }
+            button{
+                background-color:gold;
+                width: 180px;
+                height: 60px;
+                font-weight: bold;
+            }
+            div{
+                background-color: rgba(255, 255, 255, 0.39);
+                height: 780px;
+                overflow: auto;
+                columns: 3; 
+               
+            }
+            .myaside{
+                width: 250px;;
+                overflow: auto;
+                background-color:rgba(228, 220, 220, 0.859);
+                color: black;
+                text-align:left;
+                float: left;
+                columns: 1;
+              
+            }
+            article{
+                overflow: auto;
+                text-align: left;
+                background-color:rgba(241, 235, 235, 0.859);
+               
+                columns: 1;
+            }
         </style>
     </head>
     <body>
-        <header><h1>Prima pagina</h1></header>
+        <header>
+            <h1>PRIMA PAGINA</h1>
+            <h2>Info utili e articoli importanti</h2>
+        </header>
+        <hr>
         <nav>
-            <a href="/home">Home</a>
-            <a href="">Seconda pagina</a>
-            <a href="">terza pagina</a>
+           <a href="/home" style="font-size:larger">[ HOME ]</a>
+           <a href="" style="font-size:larger">[ SECONDA PAGINA]</a>
+           <a href="" style="font-size:larger">[ TERZA PAGINA ]</a>
         </nav>
-        <section>
-            <article align="left">Prova inserimento contenuto "article"</article>
-            <article align="right">Riprova inserimento contenuto</article>
-        </section>
+        <hr>
+        <div>
+            <aside class="myaside">
+                <h2>Info:</h2>
+                <p>Per informazioni riferirsi all'indirizzo e-mail e ai numeri sul lato destro della pagina.</p>
+            </aside>
+            <section>
+                <article>
+                    <h2>Primo articolo</h2>
+                    <p> [Prova inserimento contenuto "article" Verifica layout per controllare gli spazi.]</p>
+                </article>
+                <article>
+                    <h2>Secondo articolo</h2>
+                    <p>[Riprova inserimento contenuto Verifica layout per controllare gli spazi.]</p>
+                </article>
+                <article>
+                    <h2>Terzo articolo</h2>
+                    <p>[Prova per verificare il comportamento con un terzo articolo.</p>
+                </article>
+            </section> 
             <aside>
-                <ui>
-                    <h2>Info:</h2>
-                    <li>Per info chiamare i numeri riportati nei contatti</li>
-                    <li>Per ricevere e-mail con tutte le informazioni usare e-mail dei contatti</li>
-                </ui>
-        
                 <ui>
                     <h2>Contatti:</h2>
                     <li>E-mail: luigiorlando71@gmail.com</li>
@@ -48,7 +105,7 @@
                     <li>Telefono: 0818904172</li>
                 </ui>
             </aside>
-        
+        </div>
         <footer>CopyRight "Luigi Orlando" - luigiorlando71@gmail.com</footer>
     </body>
 </html>
