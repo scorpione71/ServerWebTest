@@ -17,26 +17,31 @@
                 text-shadow: 1ch;
             }
             header{
-                background-color: aquamarine;
-                color:chocolate;
-                padding: 5px;
-                text-align: center;
+                background-image: -moz-linear-gradient(top, white,black);
+                 text-align: center;
+                 font-weight: bold;
+                 color:black;
+                 text-shadow: 2px 2px  cornsilk;
             }
             footer{
                 text-align: center;
             }
+            nav{
+                font-size: larger;
+                font-weight: bold;
+                
+            }
         </style>
     </head>
     <body>
-        <header><h1 class="stile1">{{.Title}}</h1></header>
+        <header><h1>{{.Title}}</h1></header>
         <nav>
-           
-            <a href="/prima">Prima Pagina</a>
-            <a href="">Seconda Pagina</a>
-            <a href="#Terza Pagina">Terza Pagina</a>
+            <a href="/prima" style="border-style:groove">PRIMA PAGINA</a>
+            <a href="" style="border-style:groove">SECONDA PAGINA</a>
+            <a href="#Terza Pagina" style="border-style:groove">TERZA PAGINA</a>
         </nav>
         <section class="stile2">
-            <header> Contenuto del Body:</header>
+            <header><h2> Contenuto del Body:</h2></header>
             <article>{{printf "%s" .Body}}</article>
         </section> 
         <section class="stile2">

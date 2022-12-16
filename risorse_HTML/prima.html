@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <Title>[Prima Pagina]</Title>
         <style>
             h1{
-                background-color:rgb(149, 149, 149);
-                text-align: center;
-                font-weight: bold;
-                color:rgb(45, 45, 45);
-                text-shadow: 2px 2px  cornsilk;
+                 background-image: -moz-linear-gradient(top, white,black);
+                 text-align: center;
+                 font-weight: bold;
+                 color:rgb(45, 45, 45);
+                 text-shadow: 2px 2px  cornsilk;
             }
             footer{
-                background-color: rgb(125, 122, 122);
-                color: white;
-                text-align: center;
+                 background-color: rgb(125, 122, 122);
+                 color: white;
+                 text-align: center;
             }
             aside{
-                overflow: auto;
-                background-color:rgba(228, 220, 220, 0.859);
-                color: black;
-                text-align: left;
-                float:right;
-                
-               
+                 overflow: auto;
+                 background-color:rgba(228, 220, 220, 0.859);
+                 color: black;
+                 text-align: left;
+                 float:right;
             }
-            section{
-                overflow: auto;
-                padding: 20px;
-                column-count: 2;
-                
-               
-              }
+        
+         
+        
             nav{
                 background-color: rgb(214, 210, 210);
                 color:black;
@@ -46,38 +41,60 @@
                 font-weight: bold;
             }
             div{
-                overflow: auto;
-                background-color: rgba(255, 255, 255, 0.39);
-                height: 780px;
-                column-count: 3;
-               
+                 overflow: auto;
+                 background-color: rgba(255, 255, 255, 0.39);
+                 height: 780px;
+                
+   
             }
             .myaside{
-                width: 250px;
+                
                 overflow: auto;
                 background-color:rgba(228, 220, 220, 0.859);
                 color: black;
                 text-align:left;
                 float: left;
-               
                 box-shadow: 3px 3px 5px;
             }
             article{
                 overflow: auto;
                 text-align: left;
                 background-color:rgba(241, 235, 235, 0.859);
+                column-fill: auto;
             }
             .box{
-               box-shadow: 3px 3px 5px;
+                box-shadow: 3px 3px 5px;
             }
             p{
                 -webkit-text-stroke-width: 1px;
-               
+   
             }
             li{
                 -webkit-text-stroke-width: 1px;
             }
+            .grid{
+               
+                display: grid;
+                grid-template-columns: auto;
+                grid-template-rows: 250px 250px 250px;
+                padding: 10px;
+                gap: 10px;
+            }
+            .grid_div{
+                display: grid;
+                grid-template-columns: 300px auto 300px;
+                gap: 10px;
+
+            }
+            .grid_aside{
+                box-shadow: 3px 3px 5px;
+                display: grid;
+                grid-template-rows: 200px 200px 200px;
+               
+            }
+        
         </style>
+           
     </head>
     <body>
         <header>
@@ -86,17 +103,22 @@
         </header>
         <hr>
         <nav>
-           <a href="/home" style="font-size:larger">[ HOME ]</a>
-           <a href="" style="font-size:larger">[ SECONDA PAGINA]</a>
-           <a href="" style="font-size:larger">[ TERZA PAGINA ]</a>
+           <a href="/home">[ HOME ]</a>
+           <a href="">[ SECONDA PAGINA]</a>
+           <a href="">[ TERZA PAGINA ]</a>
         </nav>
         <hr>
-        <div>
-            <aside class="myaside">
-                <h2>INFO:</h2>
-                <p>Per informazioni riferirsi all'indirizzo e-mail e ai numeri sul lato destro della pagina.</p>
+        <div class="grid_div">
+            <aside class="grid_aside" style="float:left">
+                <ui>
+                    <h2>INFO:</h2>
+                    <li>Per informazioni riferirsi all'indirizzo e-mail e ai numeri sul lato destro della pagina.</li>
+                    <li>Verificare sempre che le informazioni siano corrette</li>
+                </ui>
+               
+                <p>Sito creato, per la prima volta da Luigi Orlando</p>
             </aside>
-            <section>
+            <section class="grid">
                 <article class="box">
                     <h2>Primo articolo</h2>
                     <p> [Prova inserimento contenuto "article" Verifica layout per controllare gli spazi.]</p>
@@ -112,13 +134,15 @@
                     <p>[Prova per verificare il comportamento con un terzo articolo.</p>
                 </article>
             </section> 
-            <aside class="box">
+            <aside class="grid_aside">
                 <ui>
                     <h2>CONTATTI:</h2>
                     <li>E-mail: luigiorlando71@gmail.com</li>
                     <li>Cellulare: 3271286221</li>
                     <li>Telefono: 0818904172</li>
                 </ui>
+               
+                <p>Le informazioni più importanti possono essere reperite nella sezione "Contatti"</p>
             </aside>
         </div>
         <footer>CopyRight "Luigi Orlando" - luigiorlando71@gmail.com</footer>
