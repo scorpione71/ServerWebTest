@@ -12,9 +12,10 @@
             .stile2{
                 background-color: azure;
                 font-family: Arial, Helvetica, sans-serif;
-                font-weight: normal;
+                font-weight: bold;
                 text-align: center;
-                text-shadow: 1ch;
+                color:black;
+                text-shadow: 2px 2px cornsilk;
             }
             header{
                 background-image: -moz-linear-gradient(top, white,black);
@@ -22,26 +23,45 @@
                  font-weight: bold;
                  color:black;
                  text-shadow: 2px 2px  cornsilk;
+                
             }
             footer{
+                background-color: darkgray;
                 text-align: center;
+                font-weight: bold;
+                color:black;
+                text-shadow: 2px 2px cornsilk;
+                
             }
             nav{
+                background-color: rgb(214, 210, 210);
+                text-align: center;
                 font-size: larger;
                 font-weight: bold;
                 
+            }
+            .titolo2{
+                background-image: -moz-linear-gradient(top, white,black);
+                text-align: center;
+                font-weight: bold;
+                color:black;
+                text-shadow: 2px 2px cornsilk;
+                width: 250px;
+                margin-left: 42%;
             }
         </style>
     </head>
     <body>
         <header><h1>{{.Title}}</h1></header>
+        <hr>
         <nav>
-            <a href="/prima" style="border-style:groove">PRIMA PAGINA</a>
-            <a href="" style="border-style:groove">SECONDA PAGINA</a>
-            <a href="#Terza Pagina" style="border-style:groove">TERZA PAGINA</a>
+            <a href="/prima">[ PRIMA PAGINA ]</a>
+            <a href="#Seconda Pagina">[ SECONDA PAGINA ]</a>
+            <a href="#Terza Pagina">[ TERZA PAGINA ]</a>
         </nav>
+        <hr>
         <section class="stile2">
-            <header><h2> Contenuto del Body:</h2></header>
+            <h2 class="titolo2"> Contenuto del Body:</h2>
             <article>{{printf "%s" .Body}}</article>
         </section> 
         <section class="stile2">
