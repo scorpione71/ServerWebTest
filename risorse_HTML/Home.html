@@ -3,19 +3,19 @@
     <head>
         <Title>[PAGINA HOME]</Title>
         <style type="text/css">
-            .stile1{
-                background-color: aquamarine;
-                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            h1{
+                font-size:xx-large;
                 font-weight: bold;
-                text-align: center;
             }
-            .stile2{
-                background-color: azure;
+            .stile1{
+                background-color: rgba(169, 175, 175, 0.75);
                 font-family: Arial, Helvetica, sans-serif;
                 font-weight: bold;
+                font-size: larger;
                 text-align: center;
                 color:black;
                 text-shadow: 2px 2px cornsilk;
+                
             }
             header{
                 background-image: -moz-linear-gradient(top, white,black);
@@ -47,8 +47,28 @@
                 color:black;
                 text-shadow: 2px 2px cornsilk;
                 width: 250px;
-                margin-left: 42%;
+                margin-left: 30%;
+               
             }
+            .grid_main{
+                background-color: white;
+                display: grid;
+                grid-template-columns: 250px auto 250px;
+                padding : 10px;
+                gap:15px;
+                text-align: left;
+                height: 780px;
+            }
+            .grid_section{
+                display:grid;
+                grid-template-columns: repeat(3, auto);
+            }
+            article{
+                background-color:rgba(241, 235, 235, 0.859);
+                box-shadow: 3px 3px 5px;
+                padding: 5px
+            }
+         
         </style>
     </head>
     <body>
@@ -60,24 +80,40 @@
             <a href="#Terza Pagina">[ TERZA PAGINA ]</a>
         </nav>
         <hr>
-        <section class="stile2">
-            <h2 class="titolo2"> Contenuto del Body:</h2>
-            <article>{{printf "%s" .Body}}</article>
-        </section> 
-        <section class="stile2">
-            <h2 id="Home">Home</h2>
-            <p>Pagina Principale che ha lo scopo di mostrare tutte le informazioni e i link necessari alla loro visualizzazione.Verifica che 
+        <div class="grid_section">
+            <nav style="background-color:white">
+                <ui>
+                    <li><a href="#Storia">STORIA</a></li>
+                    <li><a href="#Info">INFO</a></li>
+                    
+                </ui>   
+            </nav>
+            <section class="stile1">
+                <h2 class="titolo2"> Contenuto del Body:</h2>
+                <article>{{printf "%s" .Body}}</article>
+             </section> 
+             <div></div>
+        </div>
+        <section class="grid_main">
+            <article>   
+                <h2 id="Storia">Storia</h2>
+                <p style="text-align:justify">Pagina Principale che ha lo scopo di mostrare tutte le informazioni e i link necessari alla loro visualizzazione.Verifica che 
                 il sito funzioni correttamente e che il passaggio da una pagina all'altra avvenga senza intoppi.
-            </p>
-            <h2 id="Seconda Pagina">Seconda Pagina</h2>
-            <p>Pagina Intermedia che contiene informazioni Specifiche su alcuni argomenti. Selezione di argomenti che vengono trattati in modo eccelso
+                </p>
+            </article>  
+            <article>  
+                 <h2 id="Seconda Pagina">Seconda Pagina</h2>
+                <p style="text-align:justify">Pagina Intermedia che contiene informazioni Specifiche su alcuni argomenti. Selezione di argomenti che vengono trattati in modo eccelso
                 Speriamo vada tutto bene e che funzioni correttamente.
-            </p>
-            <h2 id="Terza Pagina">Terza Pagina</h2>
-            <p>Pagina che mostra alcuni approfondimenti. Auguriamoci che non ci siano errori di caricamneto delle pagine e che l'esecuzione sia fluida
+                </p>
+            </article> 
+            <article>
+                <h2 id="Terza Pagina">Terza Pagina</h2>
+                <p style="text-align:justify">Pagina che mostra alcuni approfondimenti. Auguriamoci che non ci siano errori di caricamneto delle pagine e che l'esecuzione sia fluida
                 sempre. Speriamo
-            </p>
-        </section> 
+                </p>
+            </article>
+        </section>
         
         <footer>CopyRight "Luigi Orlando" - luigiorlando71@gmail.com</footer>  
     </body>

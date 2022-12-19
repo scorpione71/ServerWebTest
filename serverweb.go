@@ -69,7 +69,7 @@ func test(response http.ResponseWriter, request *http.Request) {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	p := Init_Page("Pagina Home Con contenuto modificato", "Contenuto Pagina")
+	p := Init_Page("Pagina Home Con contenuto modificato", "Contenuto del body della pagina Home. Test !")
 	t, _ := template.ParseFiles("./risorse_HTML/Home.html")
 	t.Execute(w, p)
 
