@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 
 	"fyne.io/fyne/v2"
@@ -12,6 +11,8 @@ import (
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 )
+
+var server http.Server
 
 func main() {
 	w := app.New()
@@ -46,8 +47,13 @@ func Multiplexer1() {
 	r.HandleFunc("/luis", luis)
 	r.HandleFunc("/home", home)
 	r.HandleFunc("/prima", prima_Pagina)
+	r.HandleFunc("/mod", mod)
+	r.HandleFunc("/close", close)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	server = http.Server{Addr: ":8080", Handler: r}
+	server.ListenAndServe()
+
+	//log.Fatal(http.ListenAndServe(":8080", r))
 
 	//Gestore principale strumento HTTP
 	//Creazione Server Http Multiplexer
@@ -56,6 +62,27 @@ func Multiplexer1() {
 	http.HandleFunc("/test/", luisHandler)
 	http.HandleFunc("/home", home_handler)
 	http.ListenAndServe("localhost:9999", nil)*/
+}
+
+func close(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Chiusura - (%v)", r.URL.Path)
+	server.Close()
+
+}
+func mod(w http.ResponseWriter, r *http.Request) {
+	p, _ := template.ParseFiles("./risorse_HTML/modifiche.html")
+	p.Execute(w, "")
+	if r.Method == "POST" {
+		/*
+			if err := r.ParseForm(); err != nil {
+				fmt.Fprintf(w, "r.ParseForm() error =  %v", err)
+				return
+			}*/
+		pagina := r.FormValue("pagina")
+		fmt.Fprintf(w, "Da modificare : %v", pagina)
+
+	}
+
 }
 
 func luis(w http.ResponseWriter, r *http.Request) {
@@ -69,13 +96,13 @@ func test(response http.ResponseWriter, request *http.Request) {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	p := Init_Page("Pagina Home Con contenuto modificato", "Contenuto del body della pagina Home. Test !")
+	p := Init_Page("HOME PAGE", "Contenuto del body della pagina Home. Test !")
 	t, _ := template.ParseFiles("./risorse_HTML/Home.html")
 	t.Execute(w, p)
 
 }
 func prima_Pagina(w http.ResponseWriter, r *http.Request) {
-	p := Init_Page("Titolo Pagina Web", "Contenuto Pagina web")
+	p := Init_Page("PRIMA PAGINA", "Contenuto del body della Prima pagina. Test !")
 	t, _ := template.ParseFiles("./risorse_HTML/prima.html")
 	t.Execute(w, p)
 }
