@@ -4,22 +4,35 @@
             <title>[Midifica pagine sito]</title>
             <style>
                 form{
-                    text-align: center;
+                    text-align:center;
                     border-color: bisque;
                     border-style: groove;
                     padding: 10px;
                 }
+                header{
+                    text-align: center;
+                    font-size: larger;
+                }
             </style>
     </head>
     <body>
-        <header></header>
+        <header>UTILITÀ PER LA MODIFICA DELLE PAGINE WEB</header>
+        <hr>
         <section>
             <form method="POST" >
-                <label>Pagina da modificare</label><input name="pagina" type="text" value="" />
+                <label>INSERIRE NOME PAGINA DA MODIFICARE : </label><input name="pagina" type="text" value="" />
+                <br><br>
+                <label>INSERIRE TITOLO DELLA PAGINA: </label><input name="titolo" type="text" value="" />
+                <br><br>
+                INSERIRE DATI DEL BODY DELLA PAGINA : 
                 <br>
-                <input type= "submit" value="submit" />
+                <textarea name="body" rows="10" cols="100"></textarea>  
+                <br><br>
+                <input type= "submit" value="INVIA DATI" /> <label>-----------------</label> <input type="reset" value="RESET DATI">
             </form>
         </section>
+        <hr>
         <footer style="text-align:center">--Utilità necessaria alla modifica delle pagine del sito--</footer>
+        <hr>
     </body>
 </html>

@@ -12,7 +12,13 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-var server http.Server
+var (
+	server      http.Server
+	titoloHome  string = "HOME"
+	bodyHome    string = "Body della Home"
+	titoloPrima string = "PRIMA PAGINA"
+	bodyPrima   string = "Body della Prima pagina"
+)
 
 func main() {
 	w := app.New()
@@ -36,19 +42,23 @@ type Page struct {
 	Body  []byte
 }
 
-func Init_Page(title string, body string) *Page {
-	return &Page{Title: title, Body: []byte(body)}
+func (p *Page) InitPage(title string, body string) {
+	p.Title = title
+	p.Body = []byte(body)
+}
+func (p *Page) GetPage() *Page {
+	return p
 }
 
 func Multiplexer1() {
 	//http Handler che è il Multiplexer
 	r := http.NewServeMux()
-	r.HandleFunc("/test/", test)
-	r.HandleFunc("/luis", luis)
-	r.HandleFunc("/home", home)
-	r.HandleFunc("/prima", prima_Pagina)
-	r.HandleFunc("/mod", mod)
-	r.HandleFunc("/close", close)
+	r.HandleFunc("/", principale)
+	//r.HandleFunc("/test/", test)
+	//r.HandleFunc("/home", home)
+	//r.HandleFunc("/prima", primaPagina)
+	//r.HandleFunc("/mod", modPage)
+	//r.HandleFunc("/close", close)
 
 	server = http.Server{Addr: ":8080", Handler: r}
 	server.ListenAndServe()
@@ -64,45 +74,82 @@ func Multiplexer1() {
 	http.ListenAndServe("localhost:9999", nil)*/
 }
 
-func close(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Chiusura - (%v)", r.URL.Path)
-	server.Close()
+func principale(w http.ResponseWriter, r *http.Request) {
+	switch r.URL.Path {
+	case "/mod":
+		p, _ := template.ParseFiles("./risorse_HTML/modifiche.html")
+		p.Execute(w, "")
+		modPage(r)
+	case "/home":
+		var p Page
+		p.InitPage(titoloHome, bodyHome)
+		h := p.GetPage()
+		t, _ := template.ParseFiles("./risorse_HTML/Home.html")
+		t.Execute(w, h)
+	case "/prima":
+		var p Page
+		p.InitPage(titoloPrima, bodyPrima)
+		t, _ := template.ParseFiles("./risorse_HTML/prima.html")
+		t.Execute(w, p)
+	case "/close":
+		fmt.Printf("Chiusura - (%v) ", r.URL.Path)
+		server.Close()
+	}
 
 }
-func mod(w http.ResponseWriter, r *http.Request) {
-	p, _ := template.ParseFiles("./risorse_HTML/modifiche.html")
-	p.Execute(w, "")
+
+/*
+	func close(w http.ResponseWriter, r *http.Request) {
+		fmt.Printf("Chiusura - (%v)", r.URL.Path)
+		server.Close()
+
+}
+*/
+func modPage(r *http.Request) {
+	/*
+		p, _ := template.ParseFiles("./risorse_HTML/modifiche.html")
+		p.Execute(w, "")*/
 	if r.Method == "POST" {
 		/*
 			if err := r.ParseForm(); err != nil {
 				fmt.Fprintf(w, "r.ParseForm() error =  %v", err)
 				return
 			}*/
-		pagina := r.FormValue("pagina")
-		fmt.Fprintf(w, "Da modificare : %v", pagina)
+		switch r.FormValue("pagina") {
+		case "home":
+			titoloHome = r.FormValue("titolo")
+			bodyHome = r.FormValue("body")
+
+		case "prima":
+			titoloPrima = r.FormValue("titolo")
+			bodyPrima = r.FormValue("body")
+
+		}
 
 	}
 
 }
 
-func luis(w http.ResponseWriter, r *http.Request) {
-	page, _ := template.ParseFiles("./risorse_HTML/Home.html")
-	page.Execute(w, "")
-}
-
+/*
 func test(response http.ResponseWriter, request *http.Request) {
 	//URL.Path[1:] serve a specificare che verrà visualizzato il path a partire dal secondo carattere, quindi visualizzerà tutto ciò che verra digitato dopo "/"
 	fmt.Fprintf(response, "HOME PAGE - LUIGI ORLANDO\n PATH DIGITATO [ %s ]", request.URL.Path[len("/test/"):])
 }
 
+
 func home(w http.ResponseWriter, r *http.Request) {
-	p := Init_Page("HOME PAGE", "Contenuto del body della pagina Home. Test !")
+	var p Page
+	p.InitPage(titoloHome, bodyHome)
+	h := p.GetPage()
+	//p := InitPage("HOME PAGE", "Contenuto del body della pagina Home. Test !")
 	t, _ := template.ParseFiles("./risorse_HTML/Home.html")
-	t.Execute(w, p)
+	t.Execute(w, h)
 
 }
-func prima_Pagina(w http.ResponseWriter, r *http.Request) {
-	p := Init_Page("PRIMA PAGINA", "Contenuto del body della Prima pagina. Test !")
+
+func primaPagina(w http.ResponseWriter, r *http.Request) {
+	var p Page
+	p.InitPage(titoloPrima, bodyPrima)
 	t, _ := template.ParseFiles("./risorse_HTML/prima.html")
 	t.Execute(w, p)
-}
+}*/
