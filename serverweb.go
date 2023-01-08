@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"os"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -29,6 +30,7 @@ func main() {
 		}
 	}, a)
 	a.SetContent(container.NewGridWithRows(2, widget.NewButton("AVVIA SERVER 1", func() {
+		creaFile("prova.txt")
 		Multiplexer1()
 	}), widget.NewButton("ESCI", func() { dialogo.Show() })))
 	a.Resize(fyne.NewSize(300, 200))
@@ -46,8 +48,43 @@ func (p *Page) InitPage(title string, body string) {
 	p.Title = title
 	p.Body = []byte(body)
 }
+
 func (p *Page) GetPage() *Page {
 	return p
+}
+
+func existFile(namefile string) bool {
+	var ver bool = false
+	//os.Stat serve a verificare che il file esiste//
+	if _, err := os.Stat(namefile); err == nil {
+		ver = true
+	}
+	return ver
+}
+
+func creaFile(namefile string) {
+	ver := existFile(namefile)
+	if !ver {
+		file, err := os.Create(namefile)
+		fmt.Printf("File : %v - Creato !", namefile)
+		if err != nil {
+			panic(err)
+		}
+		file.Close()
+	} else {
+		fmt.Printf("File : %v - Già esistente !", namefile)
+	}
+
+}
+
+func modFile(namefile string) {
+	var p Page
+	body := string(p.GetPage().Body)
+	file, err := os.Open(namefile)
+	if err == nil {
+		file.WriteString(body)
+	}
+	file.Close()
 }
 
 func Multiplexer1() {
@@ -80,9 +117,11 @@ func principale(w http.ResponseWriter, r *http.Request) {
 		p, _ := template.ParseFiles("./risorse_HTML/modifiche.html")
 		p.Execute(w, "")
 		modPage(r)
+
 	case "/home":
 		var p Page
 		p.InitPage(titoloHome, bodyHome)
+		modFile("prova.txt")
 		h := p.GetPage()
 		t, _ := template.ParseFiles("./risorse_HTML/Home.html")
 		t.Execute(w, h)
