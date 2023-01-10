@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 	"os"
 
@@ -77,14 +78,12 @@ func creaFile(namefile string) {
 
 }
 
-func modFile(namefile string) {
-	var p Page
-	body := string(p.GetPage().Body)
-	file, err := os.Open(namefile)
-	if err == nil {
-		file.WriteString(body)
+func writeFile(namefile string, p *Page) {
+	final := []byte(p.Title + string(p.Body))
+	err := ioutil.WriteFile("prova.txt", final, 0644)
+	if err != nil {
+		panic(err)
 	}
-	file.Close()
 }
 
 func Multiplexer1() {
@@ -121,15 +120,17 @@ func principale(w http.ResponseWriter, r *http.Request) {
 	case "/home":
 		var p Page
 		p.InitPage(titoloHome, bodyHome)
-		modFile("prova.txt")
 		h := p.GetPage()
+		writeFile("prova.txt", h)
 		t, _ := template.ParseFiles("./risorse_HTML/Home.html")
 		t.Execute(w, h)
 	case "/prima":
 		var p Page
 		p.InitPage(titoloPrima, bodyPrima)
+		h := p.GetPage()
+		writeFile("prova.txt", h)
 		t, _ := template.ParseFiles("./risorse_HTML/prima.html")
-		t.Execute(w, p)
+		t.Execute(w, h)
 	case "/close":
 		fmt.Printf("Chiusura - (%v) ", r.URL.Path)
 		server.Close()
